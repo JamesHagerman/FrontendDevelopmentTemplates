@@ -24,33 +24,23 @@ function isTouchDevice() {
 	}
 }
 
-// $(function() {
-//   window.keydown = {};
-//   
-//   function keyName(event) {
-//     return jQuery.hotkeys.specialKeys[event.which] ||
-//       String.fromCharCode(event.which).toLowerCase();
-//   }
-//   
-//   $(document).bind("keydown", function(event) {
-//     keydown[keyName(event)] = true;
-//     event.preventDefault();
-//   });
-//   
-//   $(document).bind("keyup", function(event) {
-//     keydown[keyName(event)] = false;
-//     event.preventDefault();
-//   });
-// });
-
-// Debug tools:
+// Debug library:
 function dumpObject(myObj) {
-	//debugClear();
-	console.log("");
+	debugClear();
+	debugLn("");
 	for (myKey in myObj){
-		console.log("myObj["+myKey +"] = "+myObj[myKey]);
+		debugLn("myObj["+myKey +"] = "+myObj[myKey]);
 	}
 }
 function stringify(myObj) {
-	console.log(JSON.stringify(myObj));
+	debugLn(JSON.stringify(myObj));
+}
+function debug(toSpit) {
+	$('.debug').append("  |" + toSpit);
+}
+function debugLn(toSpit) {
+	$('.debug').append(toSpit + "<br />");
+}
+function debugClear() {
+	$('.debug').html("<span>Debug:</span><br />");
 }
