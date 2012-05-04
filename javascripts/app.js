@@ -1,177 +1,249 @@
-// Variables:
-jQuery.fx.interval = 30; // default: 13 slow down jQuery's animation redraw rate
+/* jQuery Configuration Variables */
 
-// After DOM is loaded - Most code should go here:
-$(document).ready(
-	function() {
-		
-		var gameInterval = null;
-		var _FPS = 30;
-		var _game_halted = true;
-		var _frame = 0;
-		var _paper;
-		var _width;
-		var _height;
-		
-		var node_start_player, node_start_npc, node_start_player_first, node_start_npc_first, node_takable, node_powerup;
-		var player_color = "#FF0000", npc_color = "#0000FF", takable_color = "#00FF00";
-		var node_size = 20;
-		var layer_height = node_size * 2.5;
-		var new_x = 0;
-		var new_y = 0;
-		var current_x_offset = 0, current_y_offset = 0;
-		
-		$(window).resize(function() {
-			
-		});
-		
-		$("body.turnedoff").on('click', function() {
-			
-			//news = new NewsCollection();
-			//news.fetch();
-			//debugLn(news);
-			
-			if(_game_halted) {
-				debugLn("Starting the game loop");
-				startGameLoop();
-			} else {
-				debugLn("Stopping the game loop");
-				stopGameLoop();
-			}
-			
-			
-		});
-		
-		
-		
-		raphInit();
-		
-		function raphInit() {
-			debugLn("init");
-			
-			_paper = new Raphael(0,0, 1000, 1000);
-			_width = _paper.width;
-			_height = _paper.height;
-			
-			node_start_player = _paper.circle(_width/2, _height/2, node_size).attr({stroke: Raphael.getRGB(player_color), fill: Raphael.getRGB(player_color), "fill-opacity": .8}).click(function(e) {
-				debugLn("Clicked red start node!" + e.x + ", " + e.y);
-				moveCamera(_paper, e.x, e.y);
-				drawRandomNodes(_paper, randomBetween(4,10));
-			});
-		}
-		
-		function moveCamera(raph_paper, xval, yval) {
-			scale = 1;
-			
-			node_size = node_size / scale;
-			
-			_width = _width / scale;
-			_height = _height / scale;
-			
-			center_x = _width/2;
-			center_y = _height/2;
-			
-			new_x_offset = current_x_offset + xval - center_x;
-			new_y_offset = current_y_offset + yval - center_y;
-			
-			raph_paper.setViewBox(new_x_offset, new_y_offset, _width, _height);
-			current_x_offset = new_x_offset;
-			current_y_offset = new_y_offset;
-		}
-		
-		function drawRandomNodes(raph_paper, count) {
-			debugLn("Drawing " + count + " new nodes in random directions");
-			//count = 1;
-			for (var i=0; i < count; i = i + 1) {
-				//debugLn(" drawing a cicrle: ");
-				raph_paper.circle(randomBetween(new_x_offset, new_x_offset + _width), randomBetween(new_y_offset, new_y_offset + _height), randomBetween(node_size, node_size*3))
-						.attr({
-							stroke: Raphael.getColor(),
-							fill: Raphael.getColor(),
-							"fill-opacity": .8}).click(function(e) {
-								moveCamera(_paper, e.x, e.y);
-								drawRandomNodes(_paper, randomBetween(4,10));
-							});
-			}
-		}
-		
-		function drawNewNodes(raph_paper, last_layer_height) {
-			debugLn("drawing a new node" + last_layer_height);
-			raph_paper.circle(30, last_layer_height + layer_height, 20).attr({stroke: Raphael.getRGB(npc_color), fill: Raphael.getRGB(takable_color), "fill-opacity": .3}).click(function() {
-				debugLn("Clicked First Blue node! You'll be blue! Start your run!");
-				drawNewNodes(_paper);
-			});
-		}
-		
-		function update() {
-			debugLn("update running...");
-			
-		}
-		
-		function draw() {
-			debugLn("draw running...");
-			//var circle = _paper.circle(100, 100, 80);
-		}
-		
-		function startGameLoop() {
-			gameInterval = window.setInterval( runGameLoop , 1000/_FPS );
-			_game_halted = false;
-		}
+// Slow down jQuery's animation redraw rate
+//jQuery.fx.interval = 30; // default: 13 
 
-		function runGameLoop(toUpdate) {
-			if (!_game_halted) {
-				_frame = _frame + 1;
-				debugClear();
-				debugLn("loop " + _frame);
-				update();
-				draw();
-				
-			} else {
-				_frame = 0;
-				window.clearInterval(gameInterval);
-			}
-			
-		}
 
-		function stopGameLoop() {
-			_game_halted = true;
+// After DOM is loaded - Most code should go inside the following anonymous function:
+$(document).ready(function() {
+	
+	// All of our variables should go here:
+	var assets;
+	var stage;
+	var w, h;
+	var sky, grant, ground, hill, hill2;
+	var runningRate, isInWarp, isStationary;
+	var stationaryPosition, isPassed;
+	
+	// $(window).resize(function() {
+	// 	
+	// });
+	
+	debugLn("Starting stooge test");
+	var stoogePrototype = {
+		name: "unknown",
+		hairColor: "black",
+		handleStoogePhone: function() {
+			debugLn("StogePhone picked up!");
+			debugLn("Name: " + this.name + " Hair color: " + this.hairColor);
+		},
+		update: function() {
+			
+		},
+		draw: function() {
+			
+		}
+	};
+	
+	var stoogeCaller = {
+		stoogeList: [],
+		addStooge: function(stooge) {
+			this.stoogeList.push(stooge);
+		},
+		callStooges: function() {
+			var stoogeCount = this.stoogeList.length;
+			for (var i = 0; i < stoogeCount; i = i + 1) {
+				this.stoogeList[i].handleStoogePhone();
+			}
+		}
+	};
+
+
+	var firstStooge = Object.create(stoogePrototype);
+	var secondStooge = Object.create(stoogePrototype);
+
+	stoogeCaller.addStooge(firstStooge);
+	stoogeCaller.addStooge(secondStooge);
+
+	firstStooge.name = "curly";
+	secondStooge.name = "moe";
+
+	stoogeCaller.callStooges();
+	
+	debugLn("Ending stooge test");
+	
+	
+	// Initialize the Easel JS code:
+	init();
+	
+	function init() {
+		document.getElementById("loader").className = "loader";
+		
+		var canvasType = "html";
+		//canvasType = "js"; // Doesn't work :(
+			
+		if (canvasType === "html") {
+			var canvas = document.getElementById("htmlCanvas"); 	// HTML canvas
+		} else if (canvasType === "js"){
+			
+			// Dynamically generating canvas elements for EaselJS doesn't seem to work using this method
+			
+			var canvas = document.createElement("canvas"); 			// Generated canvas
+			document.getElementById("CanvasHolderJs").appendChild(canvas);
 		}
 		
-		
-		
-		
-		
-		
-		var message = $$({txt:'Hello World!<br /> This will go on a new line.'},'<div data-bind="txt" data-type="html"/>');
-		$$.document.append(message);
-		
-		window.NewsItem = Backbone.Model.extend({
+		if (typeof FlashCanvas !== "undefined") {
+			alert("IE! Trying to init FlashCanvas");
+			FlashCanvas.initElement(canvas);
 			
-		});
-		window.NewsCollection = Backbone.Collection.extend({
-			model: NewsItem,
+		} else if (typeof G_vmlCanvasManager !== "undefined") {
+			alert("IE! Trying to init ExplorerCanvas");
 			
-			//public_api_key: 'A public api key from topics.io',
-			//url_base: 'http://api.topics.io/topics/news/v1/?page=1&auth_api_key=',
-			url_base: 'https://api.facebook.com/method/users.getInfo?uids=4&fields=name&access_token=AAAAAAITEghMBAIye8iTErR6YxvL3T4VCAphQjaifu42i40qhjds6G9tWzdHwQzbWxJmYQNh2LHU8Wzqo8zJSLLM7fxuUhkBaHxVc1QZDZD&format=json',
+			//var canvas = document.createElement('canvas');
+			G_vmlCanvasManager.initElement(canvas);
+			//var ctx = el.getContext('2d');
 			
-			url: function() {
-				return this.url_base;// + this.public_api_key
-			},
-			
-			parse: function(response) {
-				stringify(response);
-				return response.request_args;
-			}
-		});
+		} else {
+			//alert("Not IE! Animations should work!");
+		}
 		
+		stage = new Stage(canvas);
+
+
+		runningRate = 2.5;
+		isInWarp = false;
+		isStationary = false;
+		stationaryPosition = 300;
+		isPassed = false;
+
+		// grab canvas width and height for later calculations:
+		w = canvas.width;
+		h = canvas.height;
+
+		assets = [];
+
+		manifest = [
+			{src:"assets/runningGrant.json", id:"json"},
+			{src:"assets/runningGrant.png", id:"grant"},
+			{src:"assets/sky.png", id:"sky"},
+			{src:"assets/ground.png", id:"ground"},
+			{src:"assets/parallaxHill1.png", id:"hill"},
+			{src:"assets/parallaxHill2.png", id:"hill2"}
+		];
+
+
+		loader = new PreloadJS();
+		loader.onFileLoad = handleFileLoad;
+		loader.onComplete = handleComplete;
+		loader.loadManifest(manifest);
+		stage.autoClear = false;
+
+		document.onkeypress = handlePress;
 	}
-);
+	
+	function handleFileLoad(event) {
+		assets.push(event);
+	}
 
-// After all elements load - Put CSS dependant code here:
+	function handleComplete() {
+		for(var i=0;i<assets.length;i++) {
+			var item = assets[i]; //loader.getResult(id);
+			var id = item.id;
+			var result = item.result;
+
+			if (item.type == PreloadJS.IMAGE) {
+				var bmp = new Bitmap(result);
+			}
+
+			switch (id) {
+				case "sky":
+					sky = new Shape(new Graphics().beginBitmapFill(result).drawRect(0,0,w,h));
+					break;
+				case "ground":
+					ground = new Shape();
+					var g = ground.graphics;
+					g.beginBitmapFill(result);
+					g.drawRect(0, 0, w+330, 79);
+					ground.y = h-79;
+					break;
+				case "hill":
+					hill = new Shape(new Graphics().beginBitmapFill(result).drawRect(0,0,282,59));
+					hill.x = Math.random() * w;
+					hill.scaleX = hill.scaleY = 3;
+					hill.y = 144;
+					break;
+				case "hill2":
+					hill2 = new Shape(new Graphics().beginBitmapFill(result).drawRect(0,0,212,50));
+					hill2.x = Math.random() * w;
+					hill2.scaleX = hill2.scaleY = 3;
+					hill2.y = 171;
+					break;
+				case "json":
+					try {
+						eval("var json="+result);// Convert to an object.
+					} catch (e) {
+						continue;
+					}
+					var ss = new SpriteSheet(json);
+					grant = new BitmapAnimation(ss);
+
+					// Set up looping
+					ss.getAnimation("run").next = "run";
+					ss.getAnimation("jump").next = "run";
+					grant.gotoAndPlay("run");
+
+					// Position the Grant sprite
+					grant.x = -200;
+					grant.y = 0;
+					grant.scaleX = grant.scaleY = 0.8;
+					break;
+			}
+		}
+
+		document.getElementById("loader").className = "";
+
+		if (grant == null) {
+			//console.log("Can not play. Grant sprite was not loaded.");
+			return;
+		}
+
+		stage.addChild(sky, ground, hill, hill2, grant);
+		stage.onMouseDown = handlePress;
+
+		// Game loop setup:
+		Ticker.setFPS(40);
+		
+		// Don't set the whole window to listen for the tick event, just call this one function
+		//  This acts as the main game loop.
+		console.log("Ticker set!");
+		Ticker.addListener(function () {
+			
+			var outside = w + 20;
+			var position = grant.x+runningRate;
+			grant.x = (position >= outside) ? -200 : position;
+
+			ground.x = (ground.x-15) % 330;
+			hill.x = (hill.x - 0.8);
+			if (hill.x + 838 <= 0) { hill.x = outside; }
+			hill2.x = (hill2.x - 1.2);
+			if (hill2.x + 633 <= 0) { hill2.x = outside; }
+			
+			// Update all stooges...
+			debugClear();
+			stoogeCaller.callStooges();
+
+			stage.update();
+			
+		});
+	}
+
+	function handlePress(event) {
+		grant.onAnimationEnd = handleJumpStart;
+	}
+
+	function handleJumpStart() {
+		grant.gotoAndPlay("jump");
+		grant.onAnimationEnd = null;
+	}
+	
+	
+});
+
+// After all elements load - Put code that needs access to "real" CSS attributes here:
 $(window).load(
 	function() {
-		//$('body').animate({opacity: 1.0}, 500);
+		//$('body').animate({opacity: 1.0}, 500); // Fade in the whole page once everything is loaded
 		
 	}
 );
+

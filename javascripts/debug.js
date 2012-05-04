@@ -95,6 +95,7 @@ function debugClear() {
 
 
 // Override native console.log. Probably not the best idea...
+var console = {};
 console.log = function (msg) {
 	debugLn(msg);
 }

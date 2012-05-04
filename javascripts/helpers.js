@@ -1,3 +1,13 @@
+/* Custom create function for the Object prototype. This will give us a lot of code orginization */
+if (typeof Object.create !== 'function') {
+	Object.create = function (o) {
+		var F = function () {};
+		F.prototype = o;
+		return new F();
+	}
+}
+/* end custom create method */
+
 // Useful helpers:
 function copyCssStyle(elementTo, elementFrom, stylename) {
 	//debugLn("element to pull CSS from: style: " + stylename + " element: " + $(elementFrom).attr('class') + " value: " + $(elementFrom).css(stylename));
@@ -51,6 +61,7 @@ function dumpObject(myObj) {
 		console.log("myObj["+myKey +"] = "+myObj[myKey]);
 	}
 }
+// ONLY USE THIS WHEN dumpObject() FAILS! It has issues with prototypal inheritance
 function stringify(myObj) {
 	console.log(JSON.stringify(myObj));
 }
