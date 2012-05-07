@@ -20,20 +20,6 @@ $(document).ready(function() {
 	// });
 	
 	
-	/* Start of stooge object test */
-	var drawableOne = Object.create(drawablePrototype);
-	var drawableTwo = Object.create(drawablePrototype);
-
-	drawableCollection.add(drawableOne);
-	drawableCollection.add(drawableTwo);
-
-	drawableOne.name = "ship";
-	drawableTwo.name = "rock";
-
-	drawableCollection.spitAll();
-	/* End of drawable object test */
-	
-	
 	// Initialize the Easel JS code:
 	init();
 	
@@ -162,7 +148,7 @@ $(document).ready(function() {
 		}
 
 		document.getElementById("loader").className = "";
-
+		
 		if (grant == null) {
 			//console.log("Can not play. Grant sprite was not loaded.");
 			return;
@@ -190,10 +176,10 @@ $(document).ready(function() {
 			if (hill2.x + 633 <= 0) { hill2.x = outside; }
 			
 			// Update all drawable
-			debugClear();
-			drawableCollection.spitAll();
+			//debugClear();
+			//drawableCollection.spitAll();
 
-			stage.update();
+			//stage.update();
 			
 		});
 	}
@@ -211,40 +197,94 @@ $(document).ready(function() {
 	
 	/* Custom game loop implementation */
 	var gameInterval = null;
-	var _FPS = 30;
+	var _FPS = 60;
 	var _game_halted = true;
 	var _frame = 0;
 	var _paper;
 	var _width;
 	var _height;
 	
+	var _gameCanvas = {};
+	_gameCanvas.context = null;
+	_gameCanvas.width = null;
+	_gameCanvas.height = null;
+	
 	$("#htmlCanvas").on('click', function() {
 		
-		if(_game_halted) {
-			debugLn("Starting the game loop");
-			startGameLoop();
-		} else {
-			debugLn("Stopping the game loop");
-			stopGameLoop();
-		}
+		// if(_game_halted) {
+		// 	debugLn("Starting the game loop");
+		// 	startGameLoop();
+		// } else {
+		// 	debugLn("Stopping the game loop");
+		// 	stopGameLoop();
+		// }
 		
 	});
+	
+	startGameLoop();
 	
 	gameInit();
 	
 	function gameInit() {
 		debugLn("init");
+		
+		_gameCanvas.width = document.getElementById("htmlCanvas").width;
+		_gameCanvas.height = document.getElementById("htmlCanvas").height;
+		_gameCanvas.context = document.getElementById("htmlCanvas").getContext("2d");
+		
+		
+		/* Start of stooge object test */
+		var drawableOne = Object.create(drawablePrototype);
+		drawableOne.name = "ship";
+		drawableOne.x = 0;
+		drawableOne.y = 0;
+		drawableOne.xSpeed = 0.1;
+		drawableOne.ySpeed = 5;
+		drawableOne.xDir = 1;
+		drawableOne.yDir = 1;
+		drawableOne.width = 10;
+		drawableOne.height = 40;
+		drawableOne.update = function(ctx) {
+			if (this.x + this.height > _gameCanvas.width || this.x < 0) {
+				this.xDir = this.xDir * -1;
+			}
+			
+			if (this.y + this.width > _gameCanvas.height || this.y < 0) {
+				this.yDir = this.yDir * -1;
+			}
+			
+			this.x = this.x + (this.xSpeed * this.xDir);
+			this.y = this.y + (this.ySpeed * this.yDir);
+			
+		};
+		drawableOne.draw = function(ctx) {
+			ctx.fillStyle = "rgb(200,0,0)";  
+			ctx.fillRect (this.x, this.y, this.height, this.width);
+		};
+		
+		var drawableTwo = Object.create(drawablePrototype);
+		drawableTwo.name = "rock";
+
+		/* add all of those drawables to the drawable collection */
+		/* Actually, just add the ones you want to call in bulk... */
+		drawableCollection.add(drawableOne);
+		drawableCollection.add(drawableTwo);
+
+		drawableCollection.spitAll();
+		/* End of drawable object test */
+		
+		
 	}
 
 	
-	function update() {
+	function update(ctx) {
 		debugLn("update running...");
-		
+		drawableCollection.updateAll(ctx);
 	}
 	
-	function draw() {
+	function draw(ctx) {
 		debugLn("draw running...");
-		
+		drawableCollection.drawAll(ctx);
 	}
 	
 	function startGameLoop() {
@@ -256,9 +296,10 @@ $(document).ready(function() {
 		if (!_game_halted) {
 			_frame = _frame + 1;
 			debugClear();
+			_gameCanvas.context.clearRect(0,0,960,400);
 			debugLn("loop " + _frame);
-			update();
-			draw();
+			update(_gameCanvas.context);
+			draw(_gameCanvas.context);
 			
 		} else {
 			_frame = 0;

@@ -1,16 +1,15 @@
 
 var drawablePrototype = {
 	name: "unknown",
-	hairColor: "black",
 	spitInfo: function() {
 		debugLn("SpitInfo called for a drawable:");
-		debugLn("Name: " + this.name + " Hair color: " + this.hairColor);
+		debugLn("Name: " + this.name);
 	},
 	update: function(ctx) {
-		
+		debugLn("No update method for drawable with name " + this.name);
 	},
 	draw: function(ctx) {
-		
+		debugLn("No draw method for drawable with name " + this.name);
 	}
 };
 
