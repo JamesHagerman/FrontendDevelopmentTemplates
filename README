@@ -1,6 +1,21 @@
-This tool has gone through a few revisions. Check the branches for some other code examples.
+Purpose
+=======
+
+The purpose of this repo has always been to provide myself a good starting point for new frontend development projects. 
+
+Current State
+=============
+
+The most recent master is a hacky combination of Ember.js and Skeleton CSS on top of a stripped down, patched up HTML5 Boilerplate.
+
+History
+=======
+
+This repo has been a storage location for a bunch of different, entirely messy, JS code examples that I have schizophrenically added over the past year or so.
 
 This project started out as a really simple js game engine. It has evolved(devolved?) into a wireframing tool with the following features:
+
+Check the various branches to see the examples. I've tried to add a bit of information to the README files of each branch but, really, it's probably a bunch of noise, hough there may be some useful pieces of information here and there.
 
 1. It uses HTML5 Boilerplate as a starting point.
 2. It includes the best features of Skeleton CSS to help with simple layout/bootstrap-esque mockup-ing while holding onto responsive design.
