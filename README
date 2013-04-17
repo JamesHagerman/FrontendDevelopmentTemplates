@@ -1,0 +1,6 @@
+This project was a simple test of Raphael.js limitations and how it could be used to draw some simple expanding dots.
+
+Click on a dot and more dots will be made. Debug window shows some stats.
+
+Too bad Raphael sucks at moving the camera around on an existing scene. Not to mention it's issues with using SVG...
+
