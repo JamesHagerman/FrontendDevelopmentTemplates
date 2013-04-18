@@ -3,7 +3,12 @@ Purpose
 
 The purpose of this repo has always been to provide myself a rather solid starting point for new frontend development projects. 
 
-Current Status
+Live Example
+============
+
+You can find the current head over here: http://files.zenpirate.com/FrontendDevelopmentTemplates/
+
+Why?
 =============
 
 I'm sick of writing JS libraries and code examples (more on that stuff under "History") and I just want to get things out INTO the world.
@@ -15,6 +20,8 @@ So, the most recent master is a hacky combination of Ember.js and Skeleton CSS o
 3. It includes Ember.js as a tool to really make the front end development useful. Handlebars templates FTW.
 
 In the long run, this code will be ploped into either a Rails or Node.js/Express server side implamentation. Maybe Rendr (from Airbnb) will be stable enough by that point.
+
+
 
 History
 =======
