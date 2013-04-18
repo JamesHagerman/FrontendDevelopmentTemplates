@@ -38,6 +38,9 @@
 		<link rel="stylesheet" href="css/skeleton.css">
 		<link rel="stylesheet" href="css/layout.css">
 
+		<!-- Wireframing add-ons -->
+		<link rel="stylesheet" href="css/wireframe.css">
+
 		<!-- JS Shim -->
 		<!--[if lt IE 9]>
 			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -53,50 +56,62 @@
 
 		<!-- Ember Templates -->
 		<script type="text/x-handlebars">
-
-			<!-- Skeleton Layout -->
-			<!-- Delete everything in this .container and get started on your own site! -->
 			<div class="container">
-				<div class="eight columns">
-					<h1 class="remove-bottom" style="margin-top: 40px">Skeleton</h1>
-					<h5>Version 1.2</h5>
-				</div>
-				<div class="eight columns">
-					<h1 class="remove-bottom" style="margin-top: 40px; text-align: right;">Welcome to Ember.js</h1>
+				<div class="sixteen columns">
+					<h1 class="remove-bottom" style="margin-top: 40px">Ember.js + Skeleton + H5BP</h1>
+					<h5>A minimal wireframming template</h5>
 				</div>
 				<div class="sixteen columns">
 					<hr />
-					<h3>Ember.js Output</h3>
-					{{outlet}}
-					<button />
+					{{#linkTo "index" class="button"}}Demand Wireframes!{{/linkTo}}
+					{{#linkTo "ember_intro" class="button"}}Ember.js Introduction{{/linkTo}}
+					{{#linkTo "skeleton_into" class="button"}}Skeleton Introduction{{/linkTo}}
 					<hr />
 				</div>
-				<div class="one-third column">
-					<h3>About Skeleton?</h3>
-					<p>Skeleton is a small collection of well-organized CSS files that can help you rapidly develop sites that look beautiful at any size, be it a 17" laptop screen or an iPhone. It's based on a responsive grid, but also provides very basic CSS for typography, buttons, forms and media queries. Go ahead, resize this super basic page to see the grid in action.</p>
-				</div>
-				<div class="one-third column">
-					<h3>Three Core Principles</h3>
-					<p>Skeleton is built on three core principles:</p>
-					<ul class="square">
-						<li><strong>A Responsive Grid Down To Mobile</strong>: Elegant scaling from a browser to tablets to mobile.</li>
-						<li><strong>Fast to Start</strong>: It's a tool for rapid development with best practices</li>
-						<li><strong>Style Agnostic</strong>: It provides the most basic, beautiful styles, but is meant to be overwritten.</li>
-					</ul>
-				</div>
-				<div class="one-third column">
-					<h3>Docs &amp; Support</h3>
-					<p>The easiest way to really get started with Skeleton is to check out the full docs and info at <a href="http://www.getskeleton.com">www.getskeleton.com.</a>. Skeleton is also open-source and has a <a href="https://github.com/dhgamache/skeleton">project on git</a>, so check that out if you want to report bugs or create a pull request. If you have any questions, thoughts, concerns or feedback, please don't hesitate to email me at <a href="mailto:hi@getskeleton.com">hi@getskeleton.com</a>.</p>
-				</div>
-			</div><!-- container -->
+				{{outlet}}
+			</div>
 		</script>
 
 		<script type="text/x-handlebars" data-template-name="index">
-			<ul>
-				{{#each item in model}}
-					<li>{{item}}</li>
-				{{/each}}
-			</ul>
+			<div class="sixteen columns">
+				<h3>Demand Wireframes!</h3>
+				<h5>Why developers should demand wireframes</h5>
+				<br/>
+				<p>This project was created to force-feed life into wireframes.</p>
+				<p>Wireframes should always be used! However, all too often, they are wrapped up in some proprietary tool, drawn on the back of a half-used napkin, are unbuildable, or are abandoned for a worse development model (see  Waterfall SDLC).</p>
+				<p></p>
+			</div>
+		</script>
+
+		<script type="text/x-handlebars" data-template-name="ember_intro">
+			<div class="sixteen columns">
+				<h3>Ember.js! </h3>
+				<ul>
+					{{#each item in model}}
+						<li>{{item}}</li>
+					{{/each}}
+				</ul>
+			</div>
+		</script>
+
+		<script type="text/x-handlebars" data-template-name="skeleton_into">
+			<div class="one-third column">
+				<h3>About Skeleton?</h3>
+				<p>Skeleton is a small collection of well-organized CSS files that can help you rapidly develop sites that look beautiful at any size, be it a 17" laptop screen or an iPhone. It's based on a responsive grid, but also provides very basic CSS for typography, buttons, forms and media queries. Go ahead, resize this super basic page to see the grid in action.</p>
+			</div>
+			<div class="one-third column">
+				<h3>Three Core Principles</h3>
+				<p>Skeleton is built on three core principles:</p>
+				<ul class="square">
+					<li><strong>A Responsive Grid Down To Mobile</strong>: Elegant scaling from a browser to tablets to mobile.</li>
+					<li><strong>Fast to Start</strong>: It's a tool for rapid development with best practices</li>
+					<li><strong>Style Agnostic</strong>: It provides the most basic, beautiful styles, but is meant to be overwritten.</li>
+				</ul>
+			</div>
+			<div class="one-third column">
+				<h3>Docs &amp; Support</h3>
+				<p>The easiest way to really get started with Skeleton is to check out the full docs and info at <a href="http://www.getskeleton.com">www.getskeleton.com.</a>. Skeleton is also open-source and has a <a href="https://github.com/dhgamache/skeleton">project on git</a>, so check that out if you want to report bugs or create a pull request. If you have any questions, thoughts, concerns or feedback, please don't hesitate to email me at <a href="mailto:hi@getskeleton.com">hi@getskeleton.com</a>.</p>
+			</div>
 		</script>
 		
 		<!-- Main JS Requires -->

@@ -1,0 +1,18 @@
+/*
+This style adds functionality missing from Skeleton. They allow Ember.js to visiaully show active links: 
+*/
+.button.active,
+button.active,
+a.active {
+	color: darkgoldenrod;
+}
+
+/*
+This style changes some elements to be less tall so they can be used to segment the layout more easily:
+*/
+hr {
+	margin-bottom: 10px;
+}
+a {
+	margin-bottom: 0px;
+}
