@@ -4,7 +4,7 @@ jQuery.fx.interval = 30; // default: 13 slow down jQuery's animation redraw rate
 // After DOM is loaded - Most code should go here:
 $(document).ready(
 	function() {
-	
+		console.log("jQuery Ready!");
 	}
 );
 
