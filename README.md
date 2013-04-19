@@ -1,38 +1,34 @@
 Purpose
 =======
 
-The purpose of this repo has always been to provide myself a rather solid starting point for new frontend development projects. 
+The purpose of this project is to provide a solid frontend development starting template. It focuses on being minimal while still being complete enough for today's responsive, mobile, client-side application needs.
+
 
 Live Example
 ============
 
-You can find the current head over here: http://files.zenpirate.com/FrontendDevelopmentTemplates/
+The current HEAD can be viewed over at http://files.zenpirate.com/FrontendDevelopmentTemplates/
 
-Why?
+Current Version
 =============
 
-I'm sick of writing JS libraries and code examples (more on that stuff under "History") and I just want to get things out INTO the world.
+This project combines Ember.js and Skeleton CSS then places both of those tools on top of a stripped down and minified HTML5 Boilerplate. It has the following features:
 
-So, the most recent master is a hacky combination of Ember.js and Skeleton CSS on top of a stripped down, patched up, HTML5 Boilerplate. It has evolved(devolved?) into a wireframing tool with the following features:
+1. It is loosely based on the HTML5 Boilerplate project. This means it's already using a bunch of best practices for code layout.
+2. It provides Skeleton as an ultra lightweight replacement for Twitter Bootstrap. This provides a nice minimal style guide while still being extremely responsive.
+3. It provides Ember.js as a "better" replacement for Backbone.js. This makes the headaches of Backbone.js go away even if your project is REALLY tiny.
 
-1. It uses HTML5 Boilerplate as a starting point.
-2. It includes the best features of Skeleton CSS to help with simple layout/bootstrap-esque mockup-ing while holding onto responsive design.
-3. It includes Ember.js as a tool to really make the front end development useful. Handlebars templates FTW.
+Code written using this project shouldn't have any issues integrating cleanly into a Rails or Node.js/Express environment.
 
-In the long run, this code will be ploped into either a Rails or Node.js/Express server side implamentation. Maybe Rendr (from Airbnb) will be stable enough by that point.
-
-
-
-History
+History of this Repository / Past Template Attempts
 =======
 
-This project started out as a really simple js game engine. Over the last year or so I have schizophrenically added a bunch of different, entirely messy, JS code examples covering a pretty good cross section of ideas and tools. It has bits and pieces of Raphael.js, Backbone.js/Underscore, Agility.js (customized a bit by myself), and some customized debugging and helper libraries.
+For a while this repository was a dumping ground for a few half-hearted attempts at various development templates for client-side canvas games.
 
-Check the various branches to see the examples. They all should launch from index.html.
+Over time, I realized that I still didn't have a truly useable front end development template because most of the projects I was planning to build were not in the direction of Javascript games. Furthermore, all of those templates focused too much on the javascript tools involved, instead of the "getting things done" part. 
 
-I've tried to add a bit of information to the README files of each branch but, really, it probably just looks like a bunch of noise.
+So, over the last year or so the schizophrenically created, entirely messy, JS code examples - while covering a pretty good cross section of ideas and tools - have been moved to their own branches. These "templates" included bits and pieces of Raphael.js, Backbone.js/Underscore, and Agility.js (customized to support serverside templates), along with some customized debugging and helper libraries I wrote myself.
 
+Perhaps one day these tools will be expanded upon to create a more useable Javascript game template but for now, if you're interested in such things, you'll have to check out those various branches.
 
-If nothing else, let this be a reminder to everyone that code orginization is more then just indendations and naming conventions.
-
-James
+I've tried to add a bit of information to the README files of each branch but take them all with a grain of salt.
