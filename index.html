@@ -58,16 +58,17 @@
 		<script type="text/x-handlebars">
 			<div class="container">
 				<div class="four columns">
-					<h2 class="remove-bottom" style="margin-top: 40px">Ember.js + Skeleton + H5BP</h2>
-					<h5>A minimal wireframming template</h5>
-					<hr />
-					<nav>
+					<nav class="four columns" style="position: fixed;">
+						<h2 class="remove-bottom" style="margin-top: 40px">Ember.js + Skeleton + H5BP</h2>
+						<h5>A minimal wireframming template</h5>
+						<hr />
 						{{#linkTo "index" class="button"}}Demand Wireframes!{{/linkTo}}
 						{{#linkTo "ember_intro" class="button"}}Ember.js Introduction{{/linkTo}}
 						{{#linkTo "skeleton_into" class="button"}}Skeleton Introduction{{/linkTo}}
 					</nav>
+					&nbsp; <!-- This is needed to get the four column width block to have height -->
 				</div>
-				<div class="twelve columns" style="margin-top: 40px">
+				<div class="eleven columns offset-by-one" style="margin-top: 40px">
 					{{outlet}}
 				</div>
 			</div>
@@ -77,18 +78,21 @@
 			<h3>Demand Wireframes!</h3>
 			<h5>Why developers should demand wireframes</h5>
 			<hr />
-			<p>This project was created to force-feed life into wireframes.</p>
+			<p>This project was created to allow developers to force-feed life into ideas in the form of wireframes.</p>
 			<p>Wireframes should always be used... but, often they are unbuildable or exist only in some proprietary tool, they get drawn on the back of napkins and never move into another media, or they are abandoned altogether while adhearing to a specific development process (see  Waterfall SDLC).</p>
 			<p>Wireframes aren't the solution to every problem ever. Used correctly, however, they can help lead the way towards realizing and addressing issues that would otherwise only be visible late in the development effort.</p>
 			<p>With this benefit in mind, it's surprising that any development shop would decide against using such a helpful tool.</p>
-			<p>But we've forgotten something: "Who builds these wonderful wireframes?"</p>
+			<p>But we forgot something important: "Who builds these wonderful wireframes?"</p>
 			<p>We all know that different development shops use different proccesses and procedures to get work done, but regardless of those details, at some point something actually needs to be DEVELOPED!</p>
 			<p>So, why not just merge wireframing with development?</p>
+			<p>Well, there are some obvious reasons not to, but since many developers have ideas that are just as valid as those concieved by "idea people", we might as well just provide this tool for developers who feel like building wireframes!</p>
 		</script>
 
 		<script type="text/x-handlebars" data-template-name="ember_intro">
 			<h3>Ember.js</h3>
 			<hr />
+			<p>This page is not much more then an example of using Ember.js to spit out the contents of a basic model.</p>
+			<p>Really, this is mostly just the basic example from the Ember.js project...</p>
 			<ul>
 				{{#each item in model}}
 					<li>{{item}}</li>
@@ -98,7 +102,9 @@
 
 		<script type="text/x-handlebars" data-template-name="skeleton_into">
 			<h3>Skeleton</h3>
-			<hr />		
+			<hr />
+			<p>This page is just the basic Skeleton layout, dropped into a Ember.js template. Notice how the one-third width columns wrap... </p>
+			<p>This page _could_ use some work to make it more "correct" but at least Skeleton tries to get things to play nice in regards to layout.</p>		
 			<div class="one-third column">
 				<h3>About Skeleton?</h3>
 				<p>Skeleton is a small collection of well-organized CSS files that can help you rapidly develop sites that look beautiful at any size, be it a 17" laptop screen or an iPhone. It's based on a responsive grid, but also provides very basic CSS for typography, buttons, forms and media queries. Go ahead, resize this super basic page to see the grid in action.</p>
